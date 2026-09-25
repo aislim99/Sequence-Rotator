@@ -39,6 +39,10 @@
     if (!msgTimer) $("msg").textContent = "";
     btn.disabled = (w === h);
     fillBtn.disabled = false;
+    var filled = p[4] === "F";
+    fillBtn.classList.toggle("on", filled);
+    fillBtn.title = filled ? "Undo fill: put clips back to their previous scale"
+                           : "Fill to frame: scale every video clip to cover the frame";
     layout();
   }
 
@@ -69,10 +73,12 @@
         if (+p[5]) why.push(p[5] + " locked");
         if (+p[3]) why.push(p[3] + " no size");
         flash("Filled " + p[1] + (+p[2] ? " · skipped " + why.join(", ") : ""), +p[1] > 0);
+      } else if (p[0] === "UNFILL") {
+        flash("Restored " + p[1] + (+p[2] ? " · " + p[2] + " changed since, left alone" : ""), true);
       } else {
         flash(p[1] || "Unknown error", false);
       }
-      setTimeout(function () { fillBtn.classList.remove("spin"); busy = false; }, 250);
+      setTimeout(function () { fillBtn.classList.remove("spin"); busy = false; refresh(); }, 250);
     });
   });
 

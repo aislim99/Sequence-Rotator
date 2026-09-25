@@ -9,6 +9,8 @@ A small panel for Premiere Pro with two buttons:
 
   [Fill]    Scales every video clip in the active sequence so it fills
             the frame with no black bars (Motion > Scale).
+            Click again (button is lit blue) to put every clip back to
+            the scale it had before.
 
 Works with Premiere Pro 2021 (v15) and later.
 
@@ -71,8 +73,12 @@ USING IT
   items with no frame size (titles, adjustment layers, etc.).
   A short message in the panel shows how many were filled/skipped.
 - Fill doesn't move clips (Position is left alone).
-- Undo: each clip changed by Fill is a separate undo step, so undoing a
-  Fill may take several Cmd+Z presses.
+- Undoing a Fill: click the Fill button again while it's lit blue - all
+  clips go back to their previous scale in one click. Clips you've
+  re-scaled by hand since the Fill are left alone.
+  (Cmd+Z also works, but Premiere counts each clip as a separate step.)
+- The Fill toggle remembers one Fill per sequence until you quit
+  Premiere or close/reopen the panel.
 - The layout adapts to the panel size: make it tall to put the size
   under the buttons, short to keep everything on one row.
 
